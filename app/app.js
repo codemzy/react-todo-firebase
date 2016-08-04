@@ -1,8 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-console.log(process.env.NODE_ENV);
-
 // Load foundation
 require('foundation-sites/dist/foundation.min.css');
 $(document).foundation();
@@ -12,9 +10,6 @@ require('./styles/styles.scss');
 
 // Load API
 var TodoAPI = require('./api/TodoAPI.js');
-
-// FIREBASE EXAMPLE
-import './firebase-example.js';
 
 // REDUX
 // Load actions

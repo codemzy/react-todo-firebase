@@ -1,4 +1,6 @@
-var redux = require('redux');
+import * as redux from 'redux';
+import thunk from 'redux-thunk';
+
 // reducers
 var {searchTextReducer, showCompletedReducer, todosReducer} = require('./../reducers/reducers.js');
 
@@ -12,6 +14,7 @@ export var configure = (initialState = {}) => {
     
     // set up the store
     var store = redux.createStore(reducer, initialState, redux.compose(
+        redux.applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
     

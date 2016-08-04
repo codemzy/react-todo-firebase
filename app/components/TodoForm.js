@@ -1,6 +1,6 @@
 var React = require('react');
 var {connect} = require('react-redux');
-var actions =  require('./../actions/actions.js');
+var api =  require('./../firebase/api.js');
 
 export class TodoForm extends React.Component {
     
@@ -8,7 +8,7 @@ export class TodoForm extends React.Component {
        e.preventDefault();
        var text = this.refs.text.value;
        if (text.length > 0) {
-           this.props.dispatch(actions.addTodo(text));
+           this.props.dispatch(api.startAddTodo(text));
            this.refs.text.value = "";
        } else {
            this.refs.text.focus();

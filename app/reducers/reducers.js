@@ -16,14 +16,9 @@ export var showCompletedReducer = (state = false, action) => {
 
 export var todosReducer = (state = [], action) => {
    if (action.type === 'ADD_TODO') {
-        var lastID = 0;
-        if (state.length > 0) {
-            lastID = state[state.length-1].id;
-        }
-        var newID = lastID + 1;
        return [
           ...state,
-          { id: newID, text: action.text, completed: false, createdAt: moment().unix(), completedAt: false }
+          action.todo
         ];
    } 
    if (action.type === 'TOGGLE_TODO') {

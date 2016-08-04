@@ -11,10 +11,10 @@ export var toggleShowCompleted = () => {
     };
 };
 
-export var addTodo = (text) => {
+export var addTodo = (todo) => {
     return {
         type: 'ADD_TODO',
-        text: text
+        todo: todo
     };
 };
 
