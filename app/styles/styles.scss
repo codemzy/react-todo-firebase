@@ -1,0 +1,35 @@
+@import "base/variables";
+@import "components/nav";
+@import "components/todowrap";
+@import "components/todosearch";
+@import "components/todo";
+@import "components/todoform";
+
+body {
+    background-color: $bg1;
+}
+
+.page-title {
+    text-align: center;
+    color: $main-color;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+input[type=search] {
+    box-shadow: none;
+}
+
+a {
+    color: $link-color;
+}
+
+a.active, a:focus {
+    color: $hover-color;
+    text-decoration: underline;
+    outline: none;
+}
+
+a:hover {
+    color: $hover-color;
+}

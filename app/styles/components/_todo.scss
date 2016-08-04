@@ -1,0 +1,46 @@
+.todo-nomessage {
+    background: $completed-color;
+    color: $hover-color;
+    background-size: 20px 20px;
+    line-height: 1.214;
+    padding: 18px 42px 21px 25px;
+}
+
+.todo {
+    background: $link-color;
+    color: $bg1;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.214;
+    border-bottom: 2px solid $search-bg;
+    padding: 18px 42px 21px 25px;
+    position: relative;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.todo:hover {
+    background: $hover-color;
+}
+
+.todo-completed {
+    background: $completed-color;
+    color: $hover-color;
+    p {
+        text-decoration: line-through;
+    }
+}
+
+.todo-completed:hover {
+    background: $completed-hover;
+}
+
+.todo-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 1px 0 3px;
+}
+
+#check-icon {
+    margin-top: 10px;
+}

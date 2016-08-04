@@ -1,0 +1,26 @@
+.button {
+    background-color: $btn-color;
+    color: $search-bg;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.button:hover, .button:focus {
+    background-color: $btn-hover;
+    color: $search-bg;
+    outline: none;
+}
+
+.todo-form-input {
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: none;
+    outline: none;
+    border: 2px solid $completed-color;
+}
+
+.todo-form-input:focus {
+    border: 2px solid $btn-color;
+    box-shadow: none;
+    outline: none;
+}
