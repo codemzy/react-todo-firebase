@@ -20,3 +20,16 @@ export var startAddTodo = (text) => {
         });
     };
 };
+
+export var startUpdateTodo = (id, completed) => {
+    return (dispatch, getState) => {
+        var todoRef = firebaseRef.child('todos/' + id);
+        var updates = {
+            completed,
+            completedAt: completed ? moment().unix() : null
+        };
+        return todoRef.update(updates).then(() => {
+            dispatch(actions.updateTodo(id, updates));
+        });
+    };
+};

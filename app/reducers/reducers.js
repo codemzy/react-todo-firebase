@@ -21,13 +21,16 @@ export var todosReducer = (state = [], action) => {
           action.todo
         ];
    } 
-   if (action.type === 'TOGGLE_TODO') {
+   if (action.type === 'UPDATE_TODO') {
         var updatedTodos = state.map(function(todo) {
             if (todo.id === action.id) {
-                todo.completed = !todo.completed;
-                todo.completedAt = todo.completed ? moment().unix() : false;
+                return {
+                    ...todo,
+                    ...action.updates
+                };
+            } else {
+                return todo;
             }
-            return todo;
         });
        return updatedTodos;
    } 

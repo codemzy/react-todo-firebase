@@ -1,7 +1,7 @@
 var React = require('react');
 var moment = require('moment');
 var {connect} = require('react-redux');
-var actions =  require('./../actions/actions.js');
+var api =  require('./../firebase/api.js');
 
 export class Todo extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export class Todo extends React.Component {
         var checkClass = "fa fa-square fa-lg";
         if (this.props.completed) {
             todoClass = "todo todo-completed";
-            var checkClass = "fa fa-check-square fa-lg";
+            checkClass = "fa fa-check-square fa-lg";
         }
         var renderDate = () => {
             var message = 'Created ';
@@ -22,8 +22,7 @@ export class Todo extends React.Component {
         };
         return (
             <div className={todoClass} onClick={() => {
-                // this.props.onToggle(this.props.id);
-                this.props.dispatch(actions.toggleTodo(this.props.id));
+                this.props.dispatch(api.startUpdateTodo(this.props.id, !this.props.completed));
             }}>
                 <div className="row">
                     <div className="small-1 columns">

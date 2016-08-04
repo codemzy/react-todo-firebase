@@ -25,9 +25,10 @@ export var addTodos = (todos) => {
     };
 };
 
-export var toggleTodo = (id) => {
+export var updateTodo = (id, updates) => {
     return {
-        type: 'TOGGLE_TODO',
-        id: id
+        type: 'UPDATE_TODO',
+        id: id,
+        updates: updates
     };
 };
