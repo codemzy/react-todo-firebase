@@ -32,11 +32,11 @@ describe('Reducers', () => {
         it('should add new todo', () => {
             var action = {
                 type: 'ADD_TODO',
-                text: 'A new todo'
+                todo: {id: 111, text: 'Anything', completed: false, completedAt: false, createdAt: 500}
             };
             var res = reducers.todosReducer([], action);
             expect(res.length).toEqual(1);
-            expect(res[0].text).toEqual(action.text);
+            expect(res[0]).toEqual(action.todo);
         });
         it('should toggle todo completed', () => {
             var action = {

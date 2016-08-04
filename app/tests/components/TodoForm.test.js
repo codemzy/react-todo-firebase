@@ -5,6 +5,7 @@ var $ = require('jquery');
 var TestUtils = require('react-addons-test-utils');
 
 var {TodoForm} = require('../../components/TodoForm.js');
+var api =  require('../../firebase/api.js');
 
 describe('TodoForm', () => {
     it('should exist', () => {
@@ -14,10 +15,7 @@ describe('TodoForm', () => {
     // test if onAdd called with valid data
     it('should dispatch addTodo if valid text entered', () => {
         var todoText = 'Check mail';
-        var action = {
-            type: 'ADD_TODO',
-            text: todoText
-        };
+        var action = api.startAddTodo(todoText);
         var spy = expect.createSpy();
         var todoForm = TestUtils.renderIntoDocument(<TodoForm dispatch={spy}/>);
         var $el = $(ReactDOM.findDOMNode(todoForm));
