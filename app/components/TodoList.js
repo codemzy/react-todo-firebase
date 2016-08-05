@@ -19,11 +19,21 @@ export class TodoList extends React.Component {
                     </div>
                 );
             }
-            return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
+            var todosFiltered = TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
                 return (
                     <Todo key={todo.id} text={todo.text} id={todo.id} completed={todo.completed} createdAt={todo.createdAt} completedAt={todo.completedAt} />
                 );
             });
+            if (todosFiltered.length === 0) {
+                return (
+                    <div className="todo-nomessage">
+                        <p className="todo-name">No tasks found.</p>
+                        <p>Add a task using the form below, or switch the toggle above to see completed tasks.</p>
+                    </div>
+                );
+            } else {
+                return todosFiltered;
+            }
         };
         return (
             <div>
