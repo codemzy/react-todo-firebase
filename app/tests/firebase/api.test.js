@@ -24,6 +24,6 @@ describe('Firebase Api', () => {
                 text: todoText
             });
             done();
-        }).catch(done);
+        }).catch(done());
     });
 });

@@ -38,14 +38,21 @@ describe('Reducers', () => {
             expect(res.length).toEqual(1);
             expect(res[0]).toEqual(action.todo);
         });
-        it('should toggle todo completed', () => {
-            var action = {
-                type: 'TOGGLE_TODO',
-                id: 11
+        it('should toggle todo', () => {
+            var updates = {
+                completed: false,
+                completedAt: false
             };
-            var todosArray = [{id: 11, text: 'Test text', completed: false, createdAt: '', completedAt: '' }];
+            var action = {
+                type: 'UPDATE_TODO',
+                id: 11,
+                updates: updates
+            };
+            var todosArray = [{id: 11, text: 'Test text', completed: true, createdAt: '', completedAt: '' }];
             var res = reducers.todosReducer(todosArray, action);
-            expect(res[0].completed).toEqual(true);
+            expect(res[0].completed).toEqual(updates.completed);
+            expect(res[0].completedAt).toEqual(updates.completedAt);
+            expect(res[0].text).toEqual(todosArray[0].text);
         });
         it('should add existing todos', () => {
             var todos = [{id: 111, text: 'Anything', completed: false, completedAt: false, createdAt: 500}];
