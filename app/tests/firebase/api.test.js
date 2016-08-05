@@ -4,6 +4,9 @@ var expect = require('expect');
 
 var api = require('../../firebase/api.js');
 
+// the firebase connection
+import firebase, {firebaseRef} from '../../firebase/index.js';
+
 // the mock store
 var createMockStore = configureMockStore([thunk]);
 
@@ -25,5 +28,38 @@ describe('Firebase Api', () => {
             });
             done();
         }).catch(done());
+    });
+    
+    describe('Tests with firebase todos', () => {
+        var testTodoRef;
+        // add some todos to firebase for the tests
+        beforeEach((done) => {
+            testTodoRef = firebaseRef.child('todos').push();
+            testTodoRef.set({
+                text: 'Something todo',
+                completed: false,
+                createdAt: 54632984
+            }).then(() => done());
+        });
+        // remove the todos when the tests are done
+        afterEach((done) => {
+            testTodoRef.remove().then(() => done());
+        });
+        it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
+            const STORE = createMockStore({});
+            const ACTION = api.startUpdateTodo(testTodoRef.key, true);
+            STORE.dispatch(ACTION).then(() => {
+                const MOCK_ACTIONS = STORE.getActions();
+                expect(MOCK_ACTIONS[0]).toInclude({
+                    type: 'UPDATE_TODO',
+                    id: testTodoRef.key,
+                });
+                expect(MOCK_ACTIONS[0].updates).toInclude({
+                    completed: true
+                });
+                expect(MOCK_ACTIONS[0].updates.completedAt).toExist();
+                done();
+            }, done());
+        });
     });
 });
