@@ -21,6 +21,26 @@ export var startAddTodo = (text) => {
     };
 };
 
+export var startAddTodos = () => {
+    return (dispatch, getState) => {
+        var todosRef = firebaseRef.child('todos');
+        return todosRef.once('value').then((snapshot) => {
+            var todos = snapshot.val() || {};
+            // convert to an array for Redux
+            var parsedTodos = [];
+            Object.keys(todos).forEach((todoId) => {
+                parsedTodos.push({
+                    id: todoId,
+                    ...todos[todoId]
+                });
+            });
+            dispatch(actions.addTodos(parsedTodos));
+        }, (error) => {
+            console.log('Unable to fetch value', error);
+        });
+    };
+};
+
 export var startUpdateTodo = (id, completed) => {
     return (dispatch, getState) => {
         var todoRef = firebaseRef.child('todos/' + id);

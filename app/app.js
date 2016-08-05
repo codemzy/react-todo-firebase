@@ -9,24 +9,15 @@ $(document).foundation();
 require('./styles/styles.scss');
 
 // Load API
-var TodoAPI = require('./api/TodoAPI.js');
+var api =  require('./firebase/api.js');
 
 // REDUX
 // Load actions
 var actions = require('./actions/actions');
 // Load store
 var store = require('./store/configureStore').configure();
-// Subscribe to changes
-store.subscribe(() => {
-    var state = store.getState();
-    console.log('New state', state);
-    TodoAPI.setTodos(state.todos);
-});
 
-// get the todos from local storage
-var initialTodos = TodoAPI.getTodos();
-// add the todos to our state
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(api.startAddTodos());
 
 // routes - passing store for Provider
 var routes = require('./config/router')(store);
