@@ -3,6 +3,18 @@ require('dotenv').config();
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+var firebaseApi = process.env.FIREBASE_API;
+var firebaseAuth = process.env.FIREBASE_AUTH;
+var firebaseUrl = process.env.FIREBASE_DB_URL;
+var firebaseBucket = process.env.FIREBASE_BUCKET;
+
+if (process.env.NODE_ENV === 'test') {
+    firebaseApi = process.env.FIREBASE_API_TEST;
+    firebaseAuth = process.env.FIREBASE_AUTH_TEST;
+    firebaseUrl = process.env.FIREBASE_DB_URL_TEST;
+    firebaseBucket = process.env.FIREBASE_BUCKET_TEST;
+}
+
 module.exports = {
     entry: [
         'script!jquery/dist/jquery.min.js',
@@ -25,10 +37,10 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-                FIREBASE_API: JSON.stringify(process.env.FIREBASE_API),
-                FIREBASE_AUTH: JSON.stringify(process.env.FIREBASE_AUTH),
-                FIREBASE_DB_URL: JSON.stringify(process.env.FIREBASE_DB_URL),
-                FIREBASE_BUCKET: JSON.stringify(process.env.FIREBASE_BUCKET)
+                FIREBASE_API: JSON.stringify(firebaseApi),
+                FIREBASE_AUTH: JSON.stringify(firebaseAuth),
+                FIREBASE_DB_URL: JSON.stringify(firebaseUrl),
+                FIREBASE_BUCKET: JSON.stringify(firebaseBucket)
             }
         })
     ],
