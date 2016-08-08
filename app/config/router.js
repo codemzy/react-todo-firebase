@@ -8,6 +8,7 @@ var Main = require('../components/Main');
 var About = require('../components/About');
 var TodoApp = require('../components/TodoApp');
 import Account from '../components/LogOn';
+import SignOut from '../components/LogOut';
 
 // Routes
 var routes = (store) => {
@@ -18,6 +19,7 @@ var routes = (store) => {
                 <IndexRoute component={TodoApp} />
                 <Route path='/about' header='About' component={About} />
                 <Route path='/logon' header='Log On' component={Account} />
+                <Route path='/logout' header='Log Out' component={SignOut} />
             </Route>
         </Router>
     </Provider>
