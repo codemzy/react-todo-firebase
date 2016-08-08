@@ -7,7 +7,7 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var Main = require('../components/Main');
 var About = require('../components/About');
 var TodoApp = require('../components/TodoApp');
-var Account = require('../components/LogOn');
+import Account from '../components/LogOn';
 
 // Routes
 var routes = (store) => {
