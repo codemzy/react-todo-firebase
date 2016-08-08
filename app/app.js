@@ -11,9 +11,6 @@ require('./styles/styles.scss');
 // Load API
 var api =  require('./firebase/api.js');
 
-console.log(process.env.NODE_ENV);
-console.log(process.env.FIREBASE_API);
-
 // REDUX
 // Load actions
 var actions = require('./actions/actions');
