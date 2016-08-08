@@ -14,7 +14,7 @@ var routes = (store) => {
     <Provider store={store}>
         <Router history={hashHistory}> 
             <Route path="/" component={Main}>
-                <Provider store={store}><IndexRoute component={TodoApp} /></Provider>
+                <IndexRoute component={TodoApp} />
                 <Route path='/about' header='About' component={About} />
             </Route>
         </Router>
