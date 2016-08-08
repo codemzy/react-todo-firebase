@@ -7,6 +7,7 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var Main = require('../components/Main');
 var About = require('../components/About');
 var TodoApp = require('../components/TodoApp');
+var Account = require('../components/LogOn');
 
 // Routes
 var routes = (store) => {
@@ -16,6 +17,7 @@ var routes = (store) => {
             <Route path="/" component={Main}>
                 <IndexRoute component={TodoApp} />
                 <Route path='/about' header='About' component={About} />
+                <Route path='/logon' header='Log On' component={Account} />
             </Route>
         </Router>
     </Provider>
