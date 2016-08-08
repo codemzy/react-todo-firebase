@@ -6,6 +6,11 @@ var api =  require('./../firebase/api.js');
 
 export class LogOn extends React.Component {
     
+    _onLogin() {
+        var {dispatch} = this.props;
+        dispatch(api.startLogin());
+    }
+    
     render() {
         return (
             <div>
@@ -14,10 +19,10 @@ export class LogOn extends React.Component {
                 <br />
                 <div className="text-center callout account-callout">
                     <p>Log in with your Github account.</p>
-                    <a href="#" className="button expanded">Log in with Github</a>
+                    <button onClick={this._onLogin.bind(this)} className="button expanded">Log in with Github</button>
                 </div>
             </div>
-    );
+        );
     }
 }
 
