@@ -1,6 +1,10 @@
 var React = require('react');
+var Redux = require('react-redux');
 
-class LogOn extends React.Component {
+// api
+var api =  require('./../firebase/api.js');
+
+export class LogOn extends React.Component {
     
     render() {
         return (
@@ -17,4 +21,4 @@ class LogOn extends React.Component {
     }
 }
 
-module.exports = LogOn;
+export default Redux.connect()(LogOn);
