@@ -2,7 +2,7 @@
 
 var moment = require('moment');
 
-import firebase, {firebaseRef} from '../firebase/index.js';
+import firebase, {firebaseRef, githubProvider} from '../firebase/index.js';
 var actions =  require('./../actions/actions.js');
 
 
@@ -50,6 +50,24 @@ export var startUpdateTodo = (id, completed) => {
         };
         return todoRef.update(updates).then(() => {
             dispatch(actions.updateTodo(id, updates));
+        });
+    };
+};
+
+export var startLogin = () => {
+    return (dispatch, getState) => {
+        return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+            console.log('Auth worked', result);
+        }, (error) => {
+            console.log('Unable to auth', error);
+        });
+    };
+};
+
+export var startLogout = () => {
+    return (dispatch, getState) => {
+        return firebase.auth().signOut().then(() => {
+            console.log("Logged Out");
         });
     };
 };

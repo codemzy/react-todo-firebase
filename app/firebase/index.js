@@ -12,6 +12,9 @@ try {
     
 }
 
+// authenticate with github
+export var githubProvider = new firebase.auth.GithubAuthProvider();
+
 // so we can link to the db
 export var firebaseRef = firebase.database().ref();
 
