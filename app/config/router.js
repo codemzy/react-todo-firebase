@@ -13,15 +13,6 @@ var TodoApp = require('../components/TodoApp');
 import Account from '../components/LogOn';
 import SignOut from '../components/LogOut';
 
-// redirect on log in and log out
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        hashHistory.push('/todos');
-    } else {
-        hashHistory.push('/');
-    }
-});
-
 // middleware to redirect to login page if not logged in
 var requireLogin = (nextState, replace, next) => {
     if (!firebase.auth().currentUser) {
