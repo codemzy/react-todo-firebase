@@ -6,9 +6,9 @@ var api =  require('./../firebase/api.js');
 
 export class LogOut extends React.Component {
     
-    _onLogin() {
+    _onLogout() {
         var {dispatch} = this.props;
-        dispatch(api.startLogin());
+        dispatch(api.startLogout());
     }
     
     render() {
@@ -18,8 +18,8 @@ export class LogOut extends React.Component {
                 <h1 className="text-center page-title">Log Out</h1>
                 <br />
                 <div className="text-center callout account-callout">
-                    <p>Log in with your Github account.</p>
-                    <button onClick={this._onLogin.bind(this)} className="button expanded">Log in with Github</button>
+                    <p>Finished off your list? You can log out of your account below.</p>
+                    <button onClick={this._onLogout.bind(this)} className="button expanded">Log Out</button>
                 </div>
             </div>
         );
