@@ -17,6 +17,7 @@ var actions = require('./actions/actions');
 // Load store
 var store = require('./store/configureStore').configure();
 
+// get todos from firebase
 store.dispatch(api.startAddTodos());
 
 // routes - passing store for Provider
