@@ -20,16 +20,16 @@ import firebase from './firebase/index.js';
 // Load API
 var api =  require('./firebase/api.js');
 
-// get todos from firebase
-store.dispatch(api.startAddTodos());
-
 // routes - passing store for Provider
 var routes = require('./config/router')(store);
 
 // redirect on log in and log out
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        // log user in
         store.dispatch(actions.loginUser(user.uid));
+        // get todos from firebase
+        store.dispatch(api.startAddTodos());
         hashHistory.push('/todos');
     } else {
         store.dispatch(actions.logoutUser());
