@@ -27,7 +27,7 @@ var routes = require('./config/router')(store);
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         // log user in
-        store.dispatch(actions.loginUser(user.uid));
+        store.dispatch(actions.loginUser(user.uid, user.displayName));
         // get todos from firebase
         store.dispatch(api.startAddTodos());
         hashHistory.push('/todos');

@@ -5,6 +5,9 @@ var Redux = require('react-redux');
 var api =  require('./../firebase/api.js');
 
 export class LogOut extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     
     _onLogout() {
         var {dispatch} = this.props;
@@ -15,7 +18,7 @@ export class LogOut extends React.Component {
         return (
             <div>
                 <img className="float-center" src="/img/todotiger.png" alt="todo tiger" />
-                <h1 className="text-center page-title">Log Out</h1>
+                <h1 className="text-center page-title">Hello {this.props.auth.username}</h1>
                 <br />
                 <div className="text-center callout account-callout">
                     <p>Finished off your list? You can log out of your account below.</p>
@@ -26,4 +29,8 @@ export class LogOut extends React.Component {
     }
 }
 
-export default Redux.connect()(LogOut);
+export default Redux.connect(
+    (state) => {
+        return state;
+    }
+)(LogOut);

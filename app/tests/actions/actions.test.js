@@ -50,9 +50,10 @@ describe('Actions', () => {
     it('should generate login action', () => {
         var action = {
             type: 'LOGIN',
-            uid: '123'
+            uid: '123',
+            username: 'MyName'
         };
-        var res = actions.loginUser(action.uid);
+        var res = actions.loginUser(action.uid, action.username);
         expect(res).toEqual(action);
     });
     it('should generate logout action', () => {

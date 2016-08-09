@@ -38,7 +38,7 @@ var routes = (store) => {
                 <IndexRoute component={Account} onEnter={redirectIfLoggedIn}/>
                 <Route path='/todos' header='App' component={TodoApp} onEnter={requireLogin}/>
                 <Route path='/about' header='About' component={About} />
-                <Route path='/logout' header='Log Out' component={SignOut} />
+                <Route path='/logout' header='Log Out' component={SignOut} onEnter={requireLogin} />
             </Route>
         </Router>
     </Provider>

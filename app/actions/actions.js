@@ -33,10 +33,11 @@ export var updateTodo = (id, updates) => {
     };
 };
 
-export var loginUser = (uid) => {
+export var loginUser = (uid, username) => {
     return {
         type: 'LOGIN',
-        uid: uid
+        uid: uid,
+        username: username
     };
 };
 

@@ -64,16 +64,25 @@ describe('Reducers', () => {
             expect(res.length).toEqual(1);
             expect(res[0]).toEqual(todos[0]);
         });
+        it('should wipe todos on logout', () => {
+            var todos = [{id: 111, text: 'Anything', completed: false, completedAt: false, createdAt: 500}];
+            var action = {
+                type: 'LOGOUT'
+            };
+            var res = reducers.todosReducer(todos, action);
+            expect(res.length).toEqual(0);
+        });
     });
     
     describe('authReducer', () => {
         it('should store uid on login user', () => {
             var action = {
                 type: 'LOGIN',
-                uid: '123'
+                uid: '123',
+                username: 'MyName'
             };
             var res = reducers.authReducer({}, action);
-            expect(res).toEqual({ uid: action.uid });
+            expect(res).toEqual({ uid: action.uid, username: action.username });
         });
         it('should wipe uid on logout user', () => {
             var action = {

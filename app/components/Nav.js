@@ -12,6 +12,9 @@ class Nav extends React.Component {
                       <li>
                         <Link to="/about" activeClassName="active">About</Link>
                       </li>
+                      <li>
+                        <Link to="/logout" activeClassName="active">User</Link>
+                      </li>
                     </ul>
               </div>
               <div className="top-bar-right show-for-large">
