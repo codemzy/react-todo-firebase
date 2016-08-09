@@ -30,13 +30,21 @@ var requireLogin = (nextState, replace, next) => {
     next();
 };
 
+// middleware to redirect to todos page if logged in
+var redirectIfLoggedIn = (nextState, replace, next) => {
+    if (firebase.auth().currentUser) {
+        replace('/todos');
+    }
+    next();
+};
+
 // Routes
 var routes = (store) => {
     return (
     <Provider store={store}>
         <Router history={hashHistory}> 
             <Route path="/" component={Main}>
-                <IndexRoute component={Account} />
+                <IndexRoute component={Account} onEnter={redirectIfLoggedIn}/>
                 <Route path='/todos' header='App' component={TodoApp} onEnter={requireLogin}/>
                 <Route path='/about' header='About' component={About} />
                 <Route path='/logout' header='Log Out' component={SignOut} />
