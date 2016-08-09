@@ -7,12 +7,14 @@ var firebaseApi = process.env.FIREBASE_API;
 var firebaseAuth = process.env.FIREBASE_AUTH;
 var firebaseUrl = process.env.FIREBASE_DB_URL;
 var firebaseBucket = process.env.FIREBASE_BUCKET;
+var githubToken = '';
 
 if (process.env.NODE_ENV === 'test') {
     firebaseApi = process.env.FIREBASE_API_TEST;
     firebaseAuth = process.env.FIREBASE_AUTH_TEST;
     firebaseUrl = process.env.FIREBASE_DB_URL_TEST;
     firebaseBucket = process.env.FIREBASE_BUCKET_TEST;
+    githubToken = process.env.GITHUB_TEST_TOKEN;
 }
 
 module.exports = {
@@ -40,7 +42,8 @@ module.exports = {
                 FIREBASE_API: JSON.stringify(firebaseApi),
                 FIREBASE_AUTH: JSON.stringify(firebaseAuth),
                 FIREBASE_DB_URL: JSON.stringify(firebaseUrl),
-                FIREBASE_BUCKET: JSON.stringify(firebaseBucket)
+                FIREBASE_BUCKET: JSON.stringify(firebaseBucket),
+                GITHUB_TEST_TOKEN: JSON.stringify(githubToken)
             }
         })
     ],

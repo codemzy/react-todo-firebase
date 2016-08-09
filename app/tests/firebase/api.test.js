@@ -14,29 +14,20 @@ describe('Firebase Api', () => {
     it('should exist', () => {
         expect(api).toExist();
     });
-    it('should create todo and dispatch ADD_TODO', (done) => {
-        // create an empty store
-        const store = createMockStore({});
-        const todoText = 'My todo item';
-        store.dispatch(api.startAddTodo(todoText)).then(() => {
-            const actions = store.getActions();
-            expect(actions[0]).toInclude({
-                type: 'ADD_TODO'
-            });
-            expect(actions[0].todo).toInclude({
-                text: todoText
-            });
-            done();
-        }).catch(done);
-    });
     
     describe('Tests with firebase todos', () => {
         var testTodoRef;
+        var uid;
+        var todosRef;
         // add some todos to firebase for the tests
         beforeEach((done) => {
-            var todosRef = firebaseRef.child('todos');
-            todosRef.remove().then(() => {
-                testTodoRef = firebaseRef.child('todos').push();
+            var credential = firebase.auth.GithubAuthProvider.credential(process.env.GITHUB_TEST_TOKEN);
+            firebase.auth().signInWithCredential(credential).then((user) => {
+                uid = user.uid;
+                todosRef = firebaseRef.child('users/' + uid +'/todos');
+                return todosRef.remove();
+            }).then(() => {
+                testTodoRef = todosRef.push();
                 return testTodoRef.set({
                     text: 'Something todo',
                     completed: false,
@@ -47,10 +38,25 @@ describe('Firebase Api', () => {
         });
         // remove the todos when the tests are done
         afterEach((done) => {
-            testTodoRef.remove().then(() => done());
+            todosRef.remove().then(() => done());
+        });
+        it('should create todo and dispatch ADD_TODO', (done) => {
+            // create an empty store
+            const store = createMockStore({auth: {uid: uid}});
+            const todoText = 'My todo item';
+            store.dispatch(api.startAddTodo(todoText)).then(() => {
+                const actions = store.getActions();
+                expect(actions[0]).toInclude({
+                    type: 'ADD_TODO'
+                });
+                expect(actions[0].todo).toInclude({
+                    text: todoText
+                });
+                done();
+            }).catch(done);
         });
         it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
-            const STORE = createMockStore({});
+            const STORE = createMockStore({auth: {uid: uid}});
             const ACTION = api.startUpdateTodo(testTodoRef.key, true);
             STORE.dispatch(ACTION).then(() => {
                 const MOCK_ACTIONS = STORE.getActions();
@@ -66,7 +72,7 @@ describe('Firebase Api', () => {
             }, done);
         });
         it('should fetch todos and dispatch ADD_TODOS action', (done) => {
-            const STORE = createMockStore({});
+            const STORE = createMockStore({auth: {uid: uid}});
             const ACTION = api.startAddTodos();
             STORE.dispatch(ACTION).then(() => {
                 const MOCK_ACTIONS = STORE.getActions();
