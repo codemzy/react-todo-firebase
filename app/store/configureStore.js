@@ -2,14 +2,15 @@ import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
 // reducers
-var {searchTextReducer, showCompletedReducer, todosReducer} = require('./../reducers/reducers.js');
+var {searchTextReducer, showCompletedReducer, todosReducer, authReducer} = require('./../reducers/reducers.js');
 
 export var configure = (initialState = {}) => {
     // combine the reducers
     var reducer = redux.combineReducers({
         searchText: searchTextReducer,
         showCompleted: showCompletedReducer,
-        todos: todosReducer
+        todos: todosReducer,
+        auth: authReducer
     });
     
     // set up the store

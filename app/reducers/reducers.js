@@ -42,3 +42,13 @@ export var todosReducer = (state = [], action) => {
    }
    return state;
 };
+
+export var authReducer = (state = {}, action) => {
+    if (action.type === 'LOGIN') {
+        return { uid: action.uid };
+    }
+    if (action.type === 'LOGOUT') {
+        return {};
+    }
+    return state;
+};

@@ -65,4 +65,22 @@ describe('Reducers', () => {
             expect(res[0]).toEqual(todos[0]);
         });
     });
+    
+    describe('authReducer', () => {
+        it('should login user', () => {
+            var action = {
+                type: 'LOGIN',
+                uid: '123'
+            };
+            var res = reducers.authReducer({}, action);
+            expect(res).toEqual({ uid: action.uid });
+        });
+        it('should logout user', () => {
+            var action = {
+                type: 'LOGOUT'
+            };
+            var res = reducers.authReducer({}, action);
+            expect(res).toEqual({});
+        });
+    });
 });

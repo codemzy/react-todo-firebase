@@ -32,3 +32,16 @@ export var updateTodo = (id, updates) => {
         updates: updates
     };
 };
+
+export var loginUser = (uid) => {
+    return {
+        type: 'LOGIN',
+        uid: uid
+    };
+};
+
+export var logoutUser = () => {
+    return {
+        type: 'LOGOUT'
+    };
+};
