@@ -67,7 +67,7 @@ describe('Reducers', () => {
     });
     
     describe('authReducer', () => {
-        it('should login user', () => {
+        it('should store uid on login user', () => {
             var action = {
                 type: 'LOGIN',
                 uid: '123'
@@ -75,7 +75,7 @@ describe('Reducers', () => {
             var res = reducers.authReducer({}, action);
             expect(res).toEqual({ uid: action.uid });
         });
-        it('should logout user', () => {
+        it('should wipe uid on logout user', () => {
             var action = {
                 type: 'LOGOUT'
             };
